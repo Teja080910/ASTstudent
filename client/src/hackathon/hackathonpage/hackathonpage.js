@@ -156,14 +156,14 @@ export const Hackathonpage = ({route, isAuth = false, socket }) => {
                   fontSize="2xl"
                   className="task-title-color"
                 >
-                  Your Problem Statement {RoundData?.PS?.Number} title:{" "}
+                 Title:{" "} {RoundData?.PS?.Number} - {" "}
                   {RoundData?.PS?.Statement}
                 </Heading>
               </CardHeader>
               <CardBody className="task-body">
                 <Text className="task-content" as="p">
                   {" "}
-                  {RoundData?.PS?.Statement}
+                  {RoundData?.PS?.Desc}
                 </Text>
               </CardBody>
             </Card>

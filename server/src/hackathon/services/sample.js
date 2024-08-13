@@ -1,4 +1,4 @@
-import { db1 } from "./db.js";
+import { db1 } from "../../db.js";
 import xlsx from 'xlsx';
 async function exportLowAttendanceStudents(days,res) {
   try {

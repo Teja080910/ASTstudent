@@ -131,7 +131,7 @@ export const ProblemStatements = ({ data, reload }) => {
                             <div style={{ width: '100%', display: 'flex', justifyContent: 'space-evenly', margin: '2% 0%' }}>
                                 {my || <Button bg="#3AA6B9" onClick={() => setSelect('sports')}>Sports</Button>}
                                 {my || <Button bg="#3AA6B9" onClick={() => setSelect('yoga')}>Yoga</Button>}
-                                <Button bg="#3AA6B9" onClick={() => { setMy(my ? false : true); }}>{my ? "View all statements" : "My Statement"}</Button>
+                                <Button bg="#3AA6B9" onClick={() => { setMy(my ? false : true); setSelect("") }}>{my ? "View all statements" : "My Statement"}</Button>
                             </div>
                             <Box mt={8}>
                                 <div className='task-box'>
@@ -140,10 +140,8 @@ export const ProblemStatements = ({ data, reload }) => {
                                         (val?.Theme?.toLowerCase().includes(select) ||
                                             val?.Number?.includes(select) ||
                                             val?.Desc?.toLowerCase().includes(select) ||
-                                            val?.Statement?.toLowerCase().includes(select)) ||
-                                        val?.Users?.some(state => state.includes(parseInt(select)))
-                                    )?.map((task) => (
-                                        !my ? (task?.Users?.length || 0)<2 &&<Card m={2}>
+                                            val?.Statement?.toLowerCase().includes(select)))?.map((task) => (
+                                        !my ? (task?.Users?.length || 0)<=2 && !task?.Users?.includes(teamcode) &&<Card m={2}>
                                             <CardHeader>
                                                 <Heading size='md'>Problem Statement Number : {task?.Number}</Heading>
                                                 <Badge colorScheme={task.Theme === "sports" ? "blue" : "green"}>{task?.Theme}</Badge>

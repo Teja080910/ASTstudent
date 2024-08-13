@@ -25,6 +25,9 @@ import { checkUser } from "./user/checkuser.js";
 import { SignIn } from "./user/sigin.js";
 import { SignUp } from "./user/signup.js";
 import { UpdateGender } from "./user/updategender.js";
+import exportLowAttendanceStudents from "./services/sample.js"
+import { exportUsersToExcel } from "./services/cerificates_data.js";
+import exportTeamPsData from "./services/export_team_ps_data.js";
 
 const resend = new Resend(process.env.Resend_Key);
 const app = express()
@@ -178,5 +181,16 @@ app.post("/addfeedback", async (req, res) => {
    
    
 //   });
+
+// app.get('/alldata', async (req, res) => {
+
+// exportUsersToExcel(res)
+
+// });
+// app.get('/teamdata', async (req, res) => {
+
+// exportTeamPsData(req,res)
+
+// });
 
 export default app

@@ -21,6 +21,7 @@ import "./hackathonpage.css";
 import TeamJoinModal from "./joinhackathonmodal";
 import TechTeamList from "./techteamlist";
 import Galley from './gallery.jpeg'
+import TaskCard from "./taskCard";
 
 export const Hackathonpage = ({route, isAuth = false, socket }) => {
   const nav = useNavigate();
@@ -33,8 +34,8 @@ export const Hackathonpage = ({route, isAuth = false, socket }) => {
   const [password, setPassword] = useState("");
   const [TechTeamData, setTechTeamData] = useState([]);
 
-  const teamcode = useSelector((state) => state.user?.Teamcode);
-  const teamname = useSelector((state) => state.user?.Teamname);
+  const teamcode = useSelector((state) => state.user?.TeamCode);
+  const teamname = useSelector((state) => state.user?.TeamName);
   const member = useSelector((state) => state.user?.TeamMember);
   const RoundData = useSelector((state) => state.user?.TeamData);
   const [tasks, setTasks] = useState(Object.values(RoundData?.Rounds || {}));
@@ -149,27 +150,10 @@ export const Hackathonpage = ({route, isAuth = false, socket }) => {
         </div>
         <div>
           {isAuth && (
-            <Card key="ps" className="task-card">
-              <CardHeader className="task-header">
-                <Heading
-                  textAlign="center"
-                  fontSize="2xl"
-                  className="task-title-color"
-                >
-                  Your Problem Statement {RoundData?.PS?.Number} title:{" "}
-                  {RoundData?.PS?.Statement}
-                </Heading>
-              </CardHeader>
-              <CardBody className="task-body">
-                <Text className="task-content" as="p">
-                  {" "}
-                  {RoundData?.PS?.Statement}
-                </Text>
-              </CardBody>
-            </Card>
+       <TaskCard RoundData={RoundData}/>
           )}
           {isAuth &&
-            tasks.map((task, index) => (
+            tasks.sort().map((task, index) => (
               <Card key={index} className="task-card">
                 <CardHeader className="task-header">
                   <Heading
